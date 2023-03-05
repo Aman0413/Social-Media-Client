@@ -1,0 +1,67 @@
+.PostOptions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .blank {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .option-container {
+        background-color: white;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+        border-radius: 12px;
+
+        .option {
+            font-size: 14px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .danger {
+            color: #ed4956;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .follow {
+            color: var(--accent-color);
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+        }
+    }
+}
+
+.dark-mode {
+    .PostOptions {
+        .option-container {
+            background-color: #262626;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .PostOptions {
+        .option-container {
+            width: 270px;
+        }
+    }
+}

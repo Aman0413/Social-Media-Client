@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "../avatar/Avatar";
 import "./Post.scss";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
@@ -8,10 +8,12 @@ import { useNavigate } from "react-router";
 import { showToast } from "../../redux/slices/appConfigSlice";
 import { TOAST_SUCCESS } from "../../App";
 import { BiMessageSquareDetail } from "react-icons/bi";
+import Comments from "../comments/Comments";
 
 function Post({ post }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [openComments, setOpenComments] = useState(false);
   async function handlePostLiked() {
     dispatch(
       likeAndUnlikePost({
@@ -33,17 +35,51 @@ function Post({ post }) {
         <img src={post?.image?.url} alt="" />
       </div>
       <div className="footer">
-        <div className="like" onClick={handlePostLiked}>
-          {post.isLiked ? (
-            <AiFillHeart style={{ color: "red" }} className="icon" />
-          ) : (
-            <AiOutlineHeart className="icon" />
+        <div className="like-comment">
+          <div className="like" onClick={handlePostLiked}>
+            {post.isLiked ? (
+              <AiFillHeart style={{ color: "red" }} className="icon" />
+            ) : (
+              <AiOutlineHeart className="icon" />
+            )}
+            <h4>{`${post.likesCount} likes`}</h4>
+
+            {/* <BiMessageSquareDetail className="comment" /> */}
+          </div>
+
+          <div
+            className="comment"
+            onClick={() => setOpenComments(!openComments)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              aria-label="Comment"
+              className="_ab6-"
+              color="#262626"
+              fill="#262626"
+              height="24"
+              role="img"
+              viewBox="0 0 24 24"
+              width="24"
+            >
+              <path
+                d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z"
+                fill="none"
+                stroke="currentColor"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+          {openComments && (
+            <Comments
+              closeComments={() => setOpenComments(false)}
+              post={post}
+              setOpenComments={setOpenComments}
+            />
           )}
-          <h4>{`${post.likesCount} likes`}</h4>
-          <p>
-            <BiMessageSquareDetail className="comment" />
-          </p>
         </div>
+
         <p className="caption">{post.caption}</p>
         <h6 className="time-ago">{post?.timeAgo}</h6>
       </div>

@@ -23,6 +23,12 @@
     .footer {
         padding: 20px;
 
+        .like-comment{
+            display: flex;
+            gap: 20px;
+            align-items: center;
+          
+        }
         .like {
             display: flex;
             align-items: center;
