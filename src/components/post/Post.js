@@ -5,9 +5,6 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { likeAndUnlikePost } from "../../redux/slices/postsSlice";
 import { useNavigate } from "react-router";
-import { showToast } from "../../redux/slices/appConfigSlice";
-import { TOAST_SUCCESS } from "../../App";
-import { BiMessageSquareDetail } from "react-icons/bi";
 import Comments from "../comments/Comments";
 
 function Post({ post }) {
