@@ -27,7 +27,7 @@ function Profile() {
     setIsFollowing(
       feedData?.followings?.find((item) => item._id === params.userId)
     );
-  }, [myProfile, params.userId, feedData]);
+  }, [myProfile, params.userId, feedData, dispatch]);
 
   function handleUserFollow() {
     dispatch(
