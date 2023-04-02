@@ -5,15 +5,22 @@ import { BsCardImage } from "react-icons/bs";
 import { axiosClient } from "../../utils/axiosClient";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../../redux/slices/postsSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 function CreatePost() {
   const [postImg, setPostImg] = useState("");
   const [caption, setCaption] = useState("");
   const dispatch = useDispatch();
   const myProfile = useSelector((state) => state.appConfigReducer.myProfile);
-
+  const sucessToast = (msg) => {
+    toast.success(msg);
+  };
+  const errorToast = (msg) => {
+    toast.error(msg);
+  };
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onload = () => {
@@ -30,14 +37,17 @@ function CreatePost() {
         caption,
         postImg,
       });
-      console.log("post done", result);
+
+      sucessToast("Post Uploaded");
+      console.log(result);
       dispatch(
         getUserProfile({
           userId: myProfile?._id,
         })
       );
     } catch (error) {
-      console.log("what is th error", error);
+      errorToast(error.message);
+      console.log("Error", error);
     } finally {
       setCaption("");
       setPostImg("");
@@ -46,6 +56,7 @@ function CreatePost() {
 
   return (
     <div className="CreatePost">
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="left-part">
         <Avatar src={myProfile?.avatar?.url} />
       </div>
