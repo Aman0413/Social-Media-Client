@@ -52,8 +52,18 @@ function Profile() {
             <h3 className="user-name">{userProfile?.name}</h3>
             <p className="bio">{userProfile?.bio}</p>
             <div className="follower-info">
-              <h4>{`${userProfile?.followers?.length} Followers`}</h4>
-              <h4>{`${userProfile?.followings?.length} Followings`}</h4>
+              <div className="flex">
+                <h4>{`${userProfile?.posts?.length} `}</h4>
+                <p className="bold">Posts</p>
+              </div>
+              <div className="flex">
+                <h4>{`${userProfile?.followers?.length} `}</h4>
+                <p className="bold">Followers</p>
+              </div>
+              <div className="flex">
+                <h4>{`${userProfile?.followings?.length} `}</h4>
+                <p className="bold">Followings</p>
+              </div>
             </div>
             {!isMyProfile && (
               <h5

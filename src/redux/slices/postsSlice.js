@@ -27,7 +27,7 @@ export const likeAndUnlikePost = createAsyncThunk(
 
 export const deletePost = createAsyncThunk("post/deletePost", async (body) => {
   try {
-    const response = await axiosClient.delete("/post/", body);
+    const response = await axiosClient.delete("/posts", body);
     return response.result.post;
   } catch (error) {
     return Promise.reject(error);
@@ -42,6 +42,9 @@ const postsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getUserProfile.fulfilled, (state, action) => {
+        state.userProfile = action.payload;
+      })
+      .addCase(deletePost.fulfilled, (state, action) => {
         state.userProfile = action.payload;
       })
       .addCase(likeAndUnlikePost.fulfilled, (state, action) => {

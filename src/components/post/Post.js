@@ -2,15 +2,20 @@ import React, { useState } from "react";
 import Avatar from "../avatar/Avatar";
 import "./Post.scss";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { RxCross2 } from "react-icons/rx";
 import { useDispatch } from "react-redux";
-import { likeAndUnlikePost } from "../../redux/slices/postsSlice";
+import { deletePost, likeAndUnlikePost } from "../../redux/slices/postsSlice";
 import { useNavigate } from "react-router";
 import Comments from "../comments/Comments";
+import { axiosClient } from "../../utils/axiosClient";
 
 function Post({ post }) {
+  const [popup, setPopUp] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [openComments, setOpenComments] = useState(false);
+
   async function handlePostLiked() {
     dispatch(
       likeAndUnlikePost({
@@ -19,15 +24,55 @@ function Post({ post }) {
     );
   }
 
+  function handleThreeDot() {
+    setPopUp(true);
+  }
+  async function postDelete() {
+    dispatch(
+      deletePost({
+        postId: post._id,
+      })
+    );
+
+    console.log(post._id);
+  }
+
   return (
     <div className="Post">
       <div
         className="heading"
         onClick={() => navigate(`/profile/${post.owner._id}`)}
       >
-        <Avatar src={post.owner?.avatar?.url} />
-        <h4>{post.owner?.name}</h4>
+        <div className="flex">
+          <Avatar src={post.owner?.avatar?.url} />
+          <h4>{post.owner?.name}</h4>
+        </div>
+
+        <div>
+          <BsThreeDotsVertical
+            onClick={() => {
+              handleThreeDot();
+            }}
+            className="logo"
+          />
+          {popup ? (
+            <div className="popup">
+              <RxCross2
+                onClick={() => {
+                  setPopUp(false);
+                }}
+                className="logo"
+              />
+              <p className="logo" onClick={postDelete}>
+                Delete Post
+              </p>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
+
       <div className="content">
         <img src={post?.image?.url} alt="" />
       </div>
