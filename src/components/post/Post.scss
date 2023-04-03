@@ -1,55 +1,96 @@
 .Post {
-    border: 1px solid var(--border-color);
-    margin-top: 20px;
-    border-radius: 4px;
-    
-    .heading {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        height: 60px;
-        padding: 20px;
-        cursor: pointer;
+  border: 1px solid var(--border-color);
+  margin-top: 20px;
+  border-radius: 4px;
+  transition: all ease-in-out 0.3s;
+
+  .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    height: 60px;
+    padding: 20px;
+    cursor: pointer;
+    position: relative;
+  }
+  .logo {
+    font-weight: bold;
+    font-size: large;
+
+    transform: scale(1);
+    transition: all ease-in-out 0.3s;
+
+    &:active {
+      transform: scale(0.9);
     }
-    .content {
-        height: 400px;
+  }
+  .popup {
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    color: black;
+    top: 20px;
+    right: 20px;
+    border-radius: 6px;
+    transition: all ease-in-out 0.5s;
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    p {
+      font-weight: bold;
+      font-size: 0.9rem;
     }
-    .footer {
-        padding: 20px;
+  }
+  .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .content {
+    height: 400px;
 
-        .like-comment{
-            display: flex;
-            gap: 20px;
-            align-items: center;
-          
-        }
-        .like {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-
-            .icon {
-                font-size: 1.5rem;
-            }
-            .comment{
-                font-size: 1.5rem;
-            }
-        }
-
-        .caption {
-            margin-top: 12px;
-        }
-
-        .time-ago {
-            margin-top: 12px;
-            color: #aaa;
-        }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
+  }
+  .footer {
+    padding: 20px;
+
+    .like-comment {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .like {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+
+      .icon {
+        font-size: 1.5rem;
+      }
+      .comment {
+        font-size: 1.5rem;
+      }
+    }
+
+    .caption {
+      margin-top: 12px;
+    }
+
+    .time-ago {
+      margin-top: 12px;
+      color: #aaa;
+    }
+  }
 }
