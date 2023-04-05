@@ -47,6 +47,11 @@ function Login() {
             id="password"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <p>
+            <Link to={"/forgetpassword"} className="forget-password">
+              Forget Password ?
+            </Link>
+          </p>
           <div className="flex">
             <button className="submit" align="center">
               Login

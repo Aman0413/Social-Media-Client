@@ -41,7 +41,7 @@ function Profile() {
     <div className="Profile">
       <div className="container">
         <div className="left-part">
-          {isMyProfile && <CreatePost />}
+          {isMyProfile}
           {userProfile?.posts?.map((post) => (
             <Post key={post._id} post={post} />
           ))}

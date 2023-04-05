@@ -11,6 +11,7 @@ import { useEffect, useRef } from "react";
 import LoadingBar from "react-top-loading-bar";
 import OnlyIfNotLoggedIn from "./components/OnlyIfNotLoggedIn";
 import toast, { Toaster } from "react-hot-toast";
+import ForgetPassword from "./pages/forgetpassword/ForgetPassword";
 
 export const TOAST_SUCCESS = "toast_success";
 export const TOAST_FAILURE = "toast_failure";
@@ -56,6 +57,7 @@ function App() {
         <Route element={<OnlyIfNotLoggedIn />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/forgetpassword" element={<ForgetPassword />} />
         </Route>
       </Routes>
     </div>
