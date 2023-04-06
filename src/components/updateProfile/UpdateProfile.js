@@ -4,6 +4,10 @@ import "./UpdateProfile.scss";
 import dummyUserImg from "../../assets/user.png";
 import { useSelector, useDispatch } from "react-redux";
 import { updateMyProfile } from "../../redux/slices/appConfigSlice";
+import { axiosClient } from "../../utils/axiosClient";
+import { useNavigate } from "react-router-dom";
+import { KEY_ACCESS_TOKEN, removeItem } from "../../utils/localStorageManager";
+import toast, { Toaster } from "react-hot-toast";
 
 function UpdateProfile() {
   const myProfile = useSelector((state) => state.appConfigReducer.myProfile);
@@ -11,7 +15,14 @@ function UpdateProfile() {
   const [bio, setBio] = useState("");
   const [userImg, setUserImg] = useState("");
   const dispatch = useDispatch();
-
+  const [deletePopUp, setdeletePopUp] = useState(false);
+  const navigate = useNavigate();
+  const sucessToast = (msg) => {
+    toast.success(msg);
+  };
+  const errorToast = (msg) => {
+    toast.error(msg);
+  };
   useEffect(() => {
     setName(myProfile?.name || "");
     setBio(myProfile?.bio || "");
@@ -30,6 +41,13 @@ function UpdateProfile() {
     };
   }
 
+  function hadlePopUp() {
+    if (deletePopUp) {
+      setdeletePopUp(false);
+    } else {
+      setdeletePopUp(true);
+    }
+  }
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(
@@ -41,8 +59,20 @@ function UpdateProfile() {
     );
   }
 
+  async function deleteUser() {
+    const res = await axiosClient.delete("/user/", {});
+
+    if (res.status === "ok") {
+      sucessToast("User Deleted");
+    } else {
+      errorToast(res.result);
+    }
+  }
+
   return (
     <div className="UpdateProfile">
+      <Toaster position="top-center" reverseOrder={false} />
+
       <div className="container">
         <div className="left-part">
           <div className="input-user-img">
@@ -59,6 +89,26 @@ function UpdateProfile() {
           </div>
         </div>
         <div className="right-part">
+          {deletePopUp ? (
+            <div className="delete-account-pop">
+              <h4>Are sure delete account ? </h4>
+              <div className="response">
+                <button className="btn-primary" onClick={deleteUser}>
+                  Yes
+                </button>
+                <button
+                  className="btn-primary"
+                  onClick={() => {
+                    setdeletePopUp(false);
+                  }}
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
           <form onSubmit={handleSubmit}>
             <input
               value={name}
@@ -66,20 +116,23 @@ function UpdateProfile() {
               placeholder="Your Name"
               onChange={(e) => setName(e.target.value)}
             />
-            <input
+            <textarea
+              rows="10"
+              cols="3"
               value={bio}
               type="text"
               placeholder="Your Bio"
               onChange={(e) => setBio(e.target.value)}
             />
-            <input
-              type="submit"
-              className="btn-primary"
-              onClick={handleSubmit}
-            />
+
+            <button className="btn-primary" type="submit">
+              Update
+            </button>
           </form>
 
-          <button className="delete-account btn-primary">Delete Account</button>
+          <button className="delete-account btn-primary" onClick={hadlePopUp}>
+            Delete Account
+          </button>
         </div>
       </div>
     </div>
