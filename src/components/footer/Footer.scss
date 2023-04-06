@@ -6,6 +6,18 @@
   border-bottom: 1px solid var(--border-color);
 
   .footer-container {
+    .logo {
+      font-weight: 700;
+      font-size: 2rem;
+      transition: ease-in-out 0.2s;
+
+      &:hover {
+        transform: scale(1);
+      }
+      &:active {
+        transform: scale(0.9);
+      }
+    }
     .top {
       transition: all 5s ease-in-out;
       height: 500px;
@@ -30,18 +42,6 @@
           .flex-end {
             display: flex;
             justify-content: flex-end;
-          }
-          .logo {
-            font-weight: 700;
-            font-size: 2rem;
-            transition: ease-in-out 0.2s;
-
-            &:hover {
-              transform: scale(1);
-            }
-            &:active {
-              transform: scale(0.9);
-            }
           }
         }
       }

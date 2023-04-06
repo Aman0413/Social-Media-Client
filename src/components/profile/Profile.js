@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Post from "../post/Post";
 import "./Profile.scss";
 import { useNavigate, useParams } from "react-router";
-import CreatePost from "../createPost/CreatePost";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../../redux/slices/postsSlice";
 import { followAndUnfollowUser } from "../../redux/slices/feedSlice";
@@ -48,23 +47,48 @@ function Profile() {
         </div>
         <div className="right-part">
           <div className="profile-card">
-            <img className="user-img" src={userProfile?.avatar?.url} alt="" />
-            <h3 className="user-name">{userProfile?.name}</h3>
-            <p className="bio">{userProfile?.bio}</p>
-            <div className="follower-info">
-              <div className="flex">
-                <h4>{`${userProfile?.posts?.length} `}</h4>
-                <p className="bold">Posts</p>
+            <div className="profile-container">
+              <div className="my-profile-left">
+                <img
+                  className="user-img"
+                  src={userProfile?.avatar?.url}
+                  alt=""
+                />
+                <div className="follower-info">
+                  <div className="flex">
+                    <h4>{`${userProfile?.posts?.length} `}</h4>
+                    <p className="bold">Posts</p>
+                  </div>
+                  <div className="flex">
+                    <h4>{`${userProfile?.followers?.length} `}</h4>
+                    <p className="bold">Followers</p>
+                  </div>
+                  <div className="flex">
+                    <h4>{`${userProfile?.followings?.length} `}</h4>
+                    <p className="bold">Followings</p>
+                  </div>
+                </div>
               </div>
-              <div className="flex">
-                <h4>{`${userProfile?.followers?.length} `}</h4>
-                <p className="bold">Followers</p>
-              </div>
-              <div className="flex">
-                <h4>{`${userProfile?.followings?.length} `}</h4>
-                <p className="bold">Followings</p>
+              <div className="my-profile-right">
+                <div className="my-profil-right-container">
+                  <h3 className="user-name">{userProfile?.name}</h3>
+                  <p className="bio">{userProfile?.bio}</p>
+                </div>
+                {isMyProfile && (
+                  <span>
+                    <button
+                      className="update-profile btn-secondary"
+                      onClick={() => {
+                        navigate("/updateProfile");
+                      }}
+                    >
+                      Update Profile
+                    </button>
+                  </span>
+                )}
               </div>
             </div>
+
             {!isMyProfile && (
               <h5
                 style={{ marginTop: "10px" }}
@@ -76,16 +100,18 @@ function Profile() {
                 {isFollowing ? "Unfollow" : "Follow"}
               </h5>
             )}
-            {isMyProfile && (
-              <button
-                className="update-profile btn-secondary"
-                onClick={() => {
-                  navigate("/updateProfile");
-                }}
-              >
-                Update Profile
-              </button>
-            )}
+            {/* {isMyProfile && (
+              <span>
+                <button
+                  className="update-profile btn-secondary"
+                  onClick={() => {
+                    navigate("/updateProfile");
+                  }}
+                >
+                  Update Profile
+                </button>
+              </span>
+            )} */}
           </div>
         </div>
       </div>
