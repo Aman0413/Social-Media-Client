@@ -54,6 +54,41 @@ function Profile() {
                   src={userProfile?.avatar?.url}
                   alt=""
                 />
+              </div>
+              <div className="my-profile-right">
+                <div className="my-profil-right-container">
+                  <h3 className="user-name">{userProfile?.name}</h3>
+                  {!isMyProfile && (
+                    <>
+                      <span>
+                        <h4
+                          style={{ marginTop: "10px" }}
+                          onClick={handleUserFollow}
+                          className={
+                            isFollowing
+                              ? "hover-link follow-link"
+                              : "btn-primary"
+                          }
+                        >
+                          {isFollowing ? "Unfollow" : "Follow"}
+                        </h4>
+                      </span>
+                    </>
+                  )}
+                  {isMyProfile && (
+                    <span>
+                      <button
+                        className="update-profile btn-secondary"
+                        onClick={() => {
+                          navigate("/updateProfile");
+                        }}
+                      >
+                        Update Profile
+                      </button>
+                    </span>
+                  )}
+                </div>
+
                 <div className="follower-info">
                   <div className="flex">
                     <h4>{`${userProfile?.posts?.length} `}</h4>
@@ -68,50 +103,11 @@ function Profile() {
                     <p className="bold">Followings</p>
                   </div>
                 </div>
-              </div>
-              <div className="my-profile-right">
-                <div className="my-profil-right-container">
-                  <h3 className="user-name">{userProfile?.name}</h3>
+                <div className="bio-container">
                   <p className="bio">{userProfile?.bio}</p>
                 </div>
-                {isMyProfile && (
-                  <span>
-                    <button
-                      className="update-profile btn-secondary"
-                      onClick={() => {
-                        navigate("/updateProfile");
-                      }}
-                    >
-                      Update Profile
-                    </button>
-                  </span>
-                )}
               </div>
             </div>
-
-            {!isMyProfile && (
-              <h5
-                style={{ marginTop: "10px" }}
-                onClick={handleUserFollow}
-                className={
-                  isFollowing ? "hover-link follow-link" : "btn-primary"
-                }
-              >
-                {isFollowing ? "Unfollow" : "Follow"}
-              </h5>
-            )}
-            {/* {isMyProfile && (
-              <span>
-                <button
-                  className="update-profile btn-secondary"
-                  onClick={() => {
-                    navigate("/updateProfile");
-                  }}
-                >
-                  Update Profile
-                </button>
-              </span>
-            )} */}
           </div>
         </div>
       </div>

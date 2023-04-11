@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../../redux/slices/postsSlice";
 import toast, { Toaster } from "react-hot-toast";
 
-function CreatePost() {
+function CreatePost({ handlePostPopUp }) {
   const [postImg, setPostImg] = useState("");
   const [caption, setCaption] = useState("");
   const dispatch = useDispatch();
@@ -39,7 +39,9 @@ function CreatePost() {
       });
 
       sucessToast("Post Uploaded");
+
       console.log(result);
+      handlePostPopUp();
       dispatch(
         getUserProfile({
           userId: myProfile?._id,

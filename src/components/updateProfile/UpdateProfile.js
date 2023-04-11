@@ -6,8 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateMyProfile } from "../../redux/slices/appConfigSlice";
 import { axiosClient } from "../../utils/axiosClient";
 import { useNavigate } from "react-router-dom";
-import { KEY_ACCESS_TOKEN, removeItem } from "../../utils/localStorageManager";
 import toast, { Toaster } from "react-hot-toast";
+import DeleteAccount from "../deleteAccount/DeleteAccount";
+import { KEY_ACCESS_TOKEN, removeItem } from "../../utils/localStorageManager";
 
 function UpdateProfile() {
   const myProfile = useSelector((state) => state.appConfigReducer.myProfile);
@@ -17,6 +18,7 @@ function UpdateProfile() {
   const dispatch = useDispatch();
   const [deletePopUp, setdeletePopUp] = useState(false);
   const navigate = useNavigate();
+
   const sucessToast = (msg) => {
     toast.success(msg);
   };
@@ -63,7 +65,11 @@ function UpdateProfile() {
     const res = await axiosClient.delete("/user/", {});
 
     if (res.status === "ok") {
+      await axiosClient.post("/auth/logout");
+      removeItem(KEY_ACCESS_TOKEN);
       sucessToast("User Deleted");
+      setdeletePopUp(false);
+      navigate("/login");
     } else {
       errorToast(res.result);
     }
@@ -72,7 +78,6 @@ function UpdateProfile() {
   return (
     <div className="UpdateProfile">
       <Toaster position="top-center" reverseOrder={false} />
-
       <div className="container">
         <div className="left-part">
           <div className="input-user-img">
@@ -90,22 +95,7 @@ function UpdateProfile() {
         </div>
         <div className="right-part">
           {deletePopUp ? (
-            <div className="delete-account-pop">
-              <h4>Are sure delete account ? </h4>
-              <div className="response">
-                <button className="btn-primary" onClick={deleteUser}>
-                  Yes
-                </button>
-                <button
-                  className="btn-primary"
-                  onClick={() => {
-                    setdeletePopUp(false);
-                  }}
-                >
-                  No
-                </button>
-              </div>
-            </div>
+            <DeleteAccount hadlePopUp={hadlePopUp} deleteUser={deleteUser} />
           ) : (
             ""
           )}

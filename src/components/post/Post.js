@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "../avatar/Avatar";
 import "./Post.scss";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deletePost, likeAndUnlikePost } from "../../redux/slices/postsSlice";
 import { useNavigate } from "react-router";
 import Comments from "../comments/Comments";
-import { axiosClient } from "../../utils/axiosClient";
 
 function Post({ post }) {
   const [popup, setPopUp] = useState(false);
@@ -27,15 +26,14 @@ function Post({ post }) {
   function handleThreeDot() {
     setPopUp(true);
   }
-  async function postDelete() {
+  async function postDelete(post_id) {
     dispatch(
       deletePost({
-        postId: post._id,
+        postId: post_id,
       })
     );
-
-    console.log(post._id);
   }
+  useEffect(() => {}, []);
 
   return (
     <div className="Post">
@@ -63,7 +61,12 @@ function Post({ post }) {
                 }}
                 className="logo"
               />
-              <p className="logo" onClick={postDelete}>
+              <p
+                className="logo"
+                onClick={() => {
+                  postDelete(post._id);
+                }}
+              >
                 Delete Post
               </p>
             </div>
@@ -85,8 +88,6 @@ function Post({ post }) {
               <AiOutlineHeart className="icon" />
             )}
             <h4>{`${post.likesCount} likes`}</h4>
-
-            {/* <BiMessageSquareDetail className="comment" /> */}
           </div>
 
           <div

@@ -36,7 +36,6 @@ axiosClient.interceptors.response.use(
     if (data.status === "ok") {
       return data;
     }
-
     const originalRequest = respone.config;
     const statusCode = data.statusCode;
     const error = data.message;
