@@ -47,7 +47,7 @@ function Footer() {
           <div className="top">
             <div className="post">
               <div className="create-post">
-                <CreatePost />
+                <CreatePost handlePostPopUp={handlePostPopUp} />
               </div>
               <div
                 className="cancel-logo"

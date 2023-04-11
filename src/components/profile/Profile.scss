@@ -19,10 +19,15 @@
     border-radius: 4px;
     padding: 20px;
     display: flex;
+
     padding-bottom: 50px;
 
     .profile-container {
-      // margin-left: 10px;
+      margin-left: 10px;
+      display: flex;
+      gap: 100px;
+      align-items: center;
+      justify-content: center;
     }
 
     .my-profile-left {
@@ -34,11 +39,26 @@
     }
     .my-profile-right {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+
       .my-profil-right-container {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+
+        justify-content: space-around;
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+      }
+
+      .bio-container {
+        p {
+          margin-left: 20px;
+          padding: 10px;
+          width: auto;
+          height: auto;
+        }
       }
     }
 
@@ -101,20 +121,26 @@
     .right-part {
       .profile-card {
         .profile-container {
+          gap: 1px;
           .my-profile-left {
-            gap: 1px;
             .user-img {
-              width: 75px;
-              height: 75px;
-            }
-            .follower-info {
-              gap: 6px;
+              width: 80px;
+              height: 80px;
             }
           }
           .my-profile-right {
-            justify-content: start;
+            justify-content: center;
             align-items: center;
-            gap: 70px;
+
+            .my-profil-right-container {
+              gap: 20px;
+            }
+            .follower-info {
+              gap: 1px;
+              h4 {
+                font-size: 1rem;
+              }
+            }
           }
         }
       }
