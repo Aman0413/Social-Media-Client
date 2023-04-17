@@ -38,7 +38,7 @@ function Profile() {
 
   return (
     <div className="Profile">
-      <div className="container">
+      <div className="container profile-main-container">
         <div className="left-part">
           {isMyProfile}
           {userProfile?.posts?.map((post) => (

@@ -1,6 +1,6 @@
 .Profile {
   margin-top: 60px;
-  .container {
+  .profile-main-container {
     display: flex;
     flex-direction: column-reverse;
     gap: 20px;
@@ -17,15 +17,13 @@
   .profile-card {
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    padding: 20px;
     display: flex;
-
-    padding-bottom: 50px;
+    padding-block: 20px;
 
     .profile-container {
       margin-left: 10px;
       display: flex;
-      gap: 100px;
+      gap: 20px;
       align-items: center;
       justify-content: center;
     }
@@ -42,6 +40,7 @@
       flex-direction: column;
       gap: 10px;
       justify-content: center;
+      margin-left: 5px;
 
       .my-profil-right-container {
         display: flex;
@@ -80,7 +79,6 @@
     }
 
     .follower-info {
-      margin-left: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
