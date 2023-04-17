@@ -4,7 +4,7 @@ import "./Post.scss";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deletePost, likeAndUnlikePost } from "../../redux/slices/postsSlice";
 import { useNavigate } from "react-router";
 import Comments from "../comments/Comments";
