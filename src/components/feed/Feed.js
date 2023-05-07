@@ -22,10 +22,6 @@ function Feed() {
           ))}
         </div>
         <div className="right-part">
-          {/* <div className="following">
-              <h3 className="title">You Are Following</h3>
-              {feedData?.followings?.map(user => <Follower key={user._id} user={user}/>)}
-            </div> */}
           <div className="suggestions">
             <h3 className="title">Suggested For You</h3>
             {feedData?.suggestions?.map((user) => (

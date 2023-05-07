@@ -20,12 +20,13 @@
     }
     .top {
       transition: all 5s ease-in-out;
-      height: 500px;
+      height: 400px;
       width: 100%;
       margin-bottom: 30px;
       background-color: whitesmoke;
       overflow: scroll;
       border-radius: 10px;
+      padding-inline: 20px;
 
       .post {
         display: flex;
@@ -34,6 +35,17 @@
         justify-content: center;
         .create-post {
           padding-inline: 5px;
+        }
+
+        form {
+          display: flex;
+          gap: 10px;
+          input {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+          }
         }
         .cancel-logo {
           padding-block: 8px;

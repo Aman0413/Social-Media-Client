@@ -9,6 +9,7 @@ import CreatePost from "../createPost/CreatePost";
 import { RxCross2 } from "react-icons/rx";
 import { axiosClient } from "../../utils/axiosClient";
 import { useNavigate } from "react-router-dom";
+import { useSpring, animated } from "react-spring";
 
 function Footer() {
   const [post, setPost] = useState(false);
@@ -74,8 +75,9 @@ function Footer() {
                     onChange={(e) => {
                       setSearchName(e.target.value);
                     }}
+                    placeholder="Search User Here"
                   />
-                  <button>Submit</button>
+                  <button className="btn-primary">Submit</button>
                 </form>
               </div>
               <div
