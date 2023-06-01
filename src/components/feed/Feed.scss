@@ -4,6 +4,14 @@
   // height: calc(100vh - 60px);
   margin-top: 60px;
 
+  .mobile-suggestions{
+    padding-inline: 3px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    // display: none;
+  }
+
   .container {
     display: flex;
     gap: 20px;
@@ -30,5 +38,13 @@
     .right-part {
       display: none;
     }
+  }
+}
+@media screen and (min-width: 768px) {
+  .Feed {
+    .mobile-suggestions{
+      display:none;
+    }
+
   }
 }

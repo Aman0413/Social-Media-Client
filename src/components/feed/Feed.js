@@ -4,6 +4,7 @@ import Post from "../post/Post";
 import "./Feed.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { getFeedData } from "../../redux/slices/feedSlice";
+import Card from "../card/Card";
 
 function Feed() {
   const dispatch = useDispatch();
@@ -15,6 +16,12 @@ function Feed() {
 
   return (
     <div className="Feed">
+      <div className="mobile-suggestions">
+        {/* <h3 className="title">Suggested For You</h3> */}
+        {feedData?.suggestions?.map((user) => (
+          <Card key={user._id} user={user} />
+        ))}
+      </div>
       <div className="container">
         <div className="left-part">
           {feedData?.posts?.map((post) => (

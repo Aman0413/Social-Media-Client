@@ -1,0 +1,25 @@
+.Card{
+margin-top: 20px;
+width: 120px;
+height: 130px;
+padding: 5px;
+border-radius: 5px;
+border: 1px solid var(--border-color);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 10px;
+
+.user-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+    .btn-primary{
+        padding: 6px 30px; 
+    }
+
+}
